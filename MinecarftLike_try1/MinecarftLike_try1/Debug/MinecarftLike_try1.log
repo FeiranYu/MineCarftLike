@@ -1,0 +1,88 @@
+﻿  main.cpp
+  render.cpp
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(15,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(16,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(17,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(120,46): warning C4305:  “参数”: 从“double”到“float”截断
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(201,40): warning C4244:  “参数”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(201,28): warning C4244:  “参数”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(211,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(212,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(217,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(218,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(241,25): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(241,22): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,35): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,31): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(260,25): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(260,22): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,35): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,31): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(282,13): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(285,21): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(286,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(289,16): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(332,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(335,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(335,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(336,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(336,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(338,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(339,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(341,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(342,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(343,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(344,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(364,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(364,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(366,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(366,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(380,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(383,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(383,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(384,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(384,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(385,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(386,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(388,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(389,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(390,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(391,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(408,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(408,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(410,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(410,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(423,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(426,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(426,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(427,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(427,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(428,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(429,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(432,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(433,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(434,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(435,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(452,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(452,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(454,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(454,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(465,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(468,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(468,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(469,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(469,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(470,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(471,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(473,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(474,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(475,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(476,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(493,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(493,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(495,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+  正在生成代码...
+C:\Users\Administrator\source\repos\MinecarftLike_try1\MinecarftLike_try1\render.cpp(495,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+  MinecarftLike_try1.vcxproj -> C:\Users\Administrator\source\repos\MinecarftLike_try1\Debug\MinecarftLike_try1.exe
