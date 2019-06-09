@@ -163,7 +163,7 @@ void RENDER::CalTransform()
 		Transform(Point[i], finalMat, finalV[i]);
 		transform_homogenize(finalVV, finalV[i]);
 
-		FinalMesh[i].hide = CVVCheck(finalV[i]);
+		//FinalMesh[i].hide = CVVCheck(finalV[i]);
 		FinalMesh[i].Vector = finalVV;
 		FinalMesh[i].hide = true;
 		
@@ -506,14 +506,26 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 }
 
 
-void RENDER::DrawMesh(const MeshAndIndex *meshandindex)
+void RENDER::DrawMesh(const Object *object)
 {
+	pointSum = object->pointSum;
+	Point = object->Point;
+	indexSum = object->indexSum;
+	Index = object->Index;
 
+	unsigned char* pBmpBuf;//读入图像数据的指针
+	int bmpWidth;//图像的宽
+	int bmpHeight;//图像的高
+	RGBQUAD* pColorTable;//颜色表指针
+	int biBitCount;//图像类型，每像素位数
+
+	Device.biBitCount = object->texture->biBitCount;
+	Device.pColorTable = object->texture->pColorTable;
+	Device.bmpWidth = object->texture->bmpWidth;
+	Device.bmpHeight = object->texture->bmpHeight;
+	Device.pBmpBuf = object->texture->pBmpBuf;
 	
-	pointSum = meshandindex->pointSum;
-	Point = meshandindex->Point;
-	indexSum = meshandindex->indexSum;
-	Index = meshandindex->Index;
+
 	c_mesh = new color[pointSum];
 	finalV = new vector[pointSum];
 	FinalMesh = new point[pointSum];

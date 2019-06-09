@@ -21,16 +21,12 @@ using namespace std;
 #include<iostream>
 #include<fstream>
 
-
-
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const int bits = 24;
 const int MAX_DEPTH = -9999;
 
 extern float angle;
-
-
 
 
 class color
@@ -70,14 +66,26 @@ struct TriangleIndex
 	float ua, va, ub, vb, uc, vc;
 };
 
-struct MeshAndIndex
+struct Texture
+{
+	unsigned char* pBmpBuf;//读入图像数据的指针
+	int bmpWidth;//图像的宽
+	int bmpHeight;//图像的高
+	RGBQUAD* pColorTable;//颜色表指针
+	int biBitCount;//图像类型，每像素位数
+};
+
+struct Object
 {
 	int pointSum;
 	vector* Point;
 
 	int indexSum;
 	TriangleIndex* Index;
+
+	Texture *texture;
 };
+
 
 
 
@@ -93,11 +101,12 @@ public:
 	void DrawPoint(int x, int y,color Color=color(0,0,0));
 	void SetTitle(const char*);
 	color GetTexture(float u, float v);
-	bool LoadBmp(char* bmpName);
-	MeshAndIndex* LoadMeshAndIndexFromFile(const char*);
+	Texture* LoadBmp(char* bmpName);
+	Object* LoadObject(const char*);
 	
 	HDC screen_hdc;
 private:
+	friend class RENDER;
 	//windows data
 	HINSTANCE hInstance;
 	WNDCLASS Draw;
@@ -112,12 +121,14 @@ private:
 	HBITMAP hOldBitmap;
 	BITMAPINFO binfo;
 
+
 	//texture data
 	unsigned char* pBmpBuf;//读入图像数据的指针
 	int bmpWidth;//图像的宽
 	int bmpHeight;//图像的高
 	RGBQUAD* pColorTable;//颜色表指针
 	int biBitCount;//图像类型，每像素位数
+
 };
 
 
@@ -148,7 +159,7 @@ public:
 	void DrawLine(const point& a, const point& b);
 	void DrawScanLine(const point& leftp, const point& rightp);
 	void DrawTriangle(const point& p1, const point& p2, const point& p3, color Color = color(255, 255, 255));
-	void DrawMesh(const MeshAndIndex *);
+	void DrawMesh(const Object *);
 	
 	color *c_mesh;
 	point *FinalMesh;
@@ -159,9 +170,12 @@ public:
 
 	int indexSum;
 	TriangleIndex* Index;
+
 	float CamerPosX = 0;
 	float CamerPosY = 0;
 	float CamerPosZ = 6;
+
+
 private:
 	matrix worldMat1;
 	matrix worldMat2;
@@ -169,11 +183,7 @@ private:
 	matrix projectMat;
 	matrix finalMat;
 	matrix tm1, tm2;	//矩阵相乘时的临时矩阵
-
-
 };
-
-
 
 void KeyControl(WPARAM wParam);
 
@@ -185,8 +195,6 @@ void vecSub(const vector& a, const vector& b, vector& c);
 float vecDotMul(const vector& a, const vector& b);
 void matMul(const matrix& a, const matrix& b, matrix& c);
 void showMat(const matrix& mat);
-
-
 
 extern DEBUGER Debuger;
 extern DEVICE Device;

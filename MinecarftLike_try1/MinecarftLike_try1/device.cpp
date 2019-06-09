@@ -4,17 +4,17 @@
 BYTE buffer[SCREEN_WIDTH * SCREEN_HEIGHT * bits / 8];
 float depth[SCREEN_WIDTH * SCREEN_HEIGHT];
 
-MeshAndIndex* DEVICE::LoadMeshAndIndexFromFile(const char* filepath)
+Object* DEVICE::LoadObject(const char* filepath)
 {
-	MeshAndIndex* NewMeshAndIndex = new MeshAndIndex;
+	Object* NewMeshAndIndex = new Object;
 	ifstream infile;
 	infile.open(filepath, ios::in);
 	if (!infile.is_open())
 	{
 		char msg[100];
-		sprintf(msg,"LoadMeshAndIndexFromFile %s Fail!", filepath);
+		sprintf(msg,"LoadObject %s Fail!", filepath);
 		Debuger.print(msg, mRED);
-		return 0;
+		return NULL;
 	}
 	
 	infile >> NewMeshAndIndex->pointSum;
@@ -30,9 +30,17 @@ MeshAndIndex* DEVICE::LoadMeshAndIndexFromFile(const char* filepath)
 		infile >> NewMeshAndIndex->Index[i].a >> NewMeshAndIndex->Index[i].b >> NewMeshAndIndex->Index[i].c >> NewMeshAndIndex->Index[i].ua >> NewMeshAndIndex->Index[i].va >> NewMeshAndIndex->Index[i].ub >> NewMeshAndIndex->Index[i].vb >> NewMeshAndIndex->Index[i].uc >> NewMeshAndIndex->Index[i].vc;
 	}
 
+	char texturePath[100];
+
+	infile >> texturePath;
+	NewMeshAndIndex->texture = LoadBmp(texturePath);
+
+	if (!NewMeshAndIndex->texture)
+		return NULL;
+
 	infile.close();
 	char msg[100];
-	sprintf(msg, "LoadMeshAndIndexFromFile %s Success", filepath);
+	sprintf(msg, "LoadObject %s Success", filepath);
 	Debuger.print(msg, mGREEN);
 	return NewMeshAndIndex;
 }
@@ -70,6 +78,17 @@ void KeyControl(WPARAM wParam)
 		Render.CamerPosY -= 0.1;
 	if (wParam == 'E')
 		Render.CamerPosY += 0.1;
+	if (wParam == 'X')
+	{
+		for (int i = 0; i < Render.pointSum; i++)
+		{
+			char strMsg[100];
+			sprintf(strMsg, "point%d x:%.3f y:%.3f z:%.3f w:%.3f u:%.2f v:%.2f",i, Render.FinalMesh[i].Vector.x, Render.FinalMesh[i].Vector.y, Render.FinalMesh[i].Vector.z, Render.FinalMesh[i].Vector.w,Render.FinalMesh[i].u,Render.FinalMesh[i].v);
+			Debuger.print(strMsg, mBLUE);
+		}
+		Debuger.print("Break Point", mRED);
+	}
+
 }
 
 
@@ -173,7 +192,6 @@ void DEVICE::clean()
 //更新屏幕buffer
 void DEVICE::update()
 {
-
 	// put buffer To Screen
 	SetDIBits(screen_hdc, hCompatibleBitmap, 0, SCREEN_HEIGHT, buffer, (BITMAPINFO*)& binfo, DIB_RGB_COLORS);
 	BitBlt(screen_hdc, -1, -1, SCREEN_WIDTH, SCREEN_HEIGHT, hCompatibleDC, 0, 0, SRCCOPY);
@@ -200,17 +218,25 @@ void DEVICE::DrawPoint(int x, int y,color Color)
 
 color DEVICE::GetTexture(float u, float v)
 {
-	int y = v * bmpHeight;
-	int x = u * bmpWidth;
-	return color(pBmpBuf[y * bmpWidth * 3 + x * 3 + 2], pBmpBuf[y * bmpWidth * 3 + x * 3 + 1], pBmpBuf[y * bmpWidth * 3 + x * 3]);
+	if (u < 1 && v < 1&&u>0&&v>0)
+	{
+		int y = v * bmpHeight;
+		int x = u * bmpWidth;
+		return color(pBmpBuf[y * bmpWidth * 3 + x * 3 + 2], pBmpBuf[y * bmpWidth * 3 + x * 3 + 1], pBmpBuf[y * bmpWidth * 3 + x * 3]);
+	}
+	else
+		return color(0, 0, 0);
+
 
 }
 
-bool DEVICE::LoadBmp(char* bmpName)
+Texture* DEVICE::LoadBmp(char* bmpName)
 {
+	Texture* NewTexture = new Texture;
+
 	FILE* fp = fopen(bmpName, "rb");//二进制读方式打开指定的图像文件
 	if (fp == 0)
-		return 0;
+		return NULL;
 
 	//跳过位图文件头结构BITMAPFILEHEADER
 	fseek(fp, sizeof(BITMAPFILEHEADER), 0);
@@ -218,23 +244,26 @@ bool DEVICE::LoadBmp(char* bmpName)
 	//定义位图信息头结构变量，读取位图信息头进内存，存放在变量head中
 	BITMAPINFOHEADER infohead;
 	fread(&infohead, sizeof(BITMAPINFOHEADER), 1, fp); //获取图像宽、高、每像素所占位数等信息
-	bmpWidth = infohead.biWidth;
-	bmpHeight = infohead.biHeight;
-	biBitCount = infohead.biBitCount;//定义变量，计算图像每行像素所占的字节数（必须是4的倍数）
+	NewTexture->bmpWidth = infohead.biWidth;
+	NewTexture->bmpHeight = infohead.biHeight;
+	NewTexture->biBitCount = infohead.biBitCount;//定义变量，计算图像每行像素所占的字节数（必须是4的倍数）
 	//showBmpInforHead(infohead);//显示信息头 
 
-	int lineByte = (bmpWidth * biBitCount / 8 + 3) / 4 * 4;//灰度图像有颜色表，且颜色表表项为256
+	int lineByte = (NewTexture->bmpWidth * NewTexture->biBitCount / 8 + 3) / 4 * 4;//灰度图像有颜色表，且颜色表表项为256
 	if (biBitCount == 8)
 	{
 		//申请颜色表所需要的空间，读颜色表进内存
-		pColorTable = new RGBQUAD[256];
-		fread(pColorTable, sizeof(RGBQUAD), 256, fp);
+		NewTexture->pColorTable = new RGBQUAD[256];
+		fread(NewTexture->pColorTable, sizeof(RGBQUAD), 256, fp);
 	}
 
 	//申请位图数据所需要的空间，读位图数据进内存
-	pBmpBuf = new unsigned char[lineByte * bmpHeight];
-	fread(pBmpBuf, 1, lineByte * bmpHeight, fp);
+	NewTexture->pBmpBuf = new unsigned char[lineByte * NewTexture->bmpHeight];
+	fread(NewTexture->pBmpBuf, 1, lineByte * NewTexture->bmpHeight, fp);
 	fclose(fp);//关闭文件
-	Debuger.print("DEVIDE::readBmp read OK",mGREEN);
-	return 1;//读取文件成功
+
+	char strMsg[100];
+	sprintf(strMsg, "DEVIDE::readBmp %s read OK", bmpName);
+	Debuger.print(strMsg,mGREEN);
+	return NewTexture;//读取文件成功
 }

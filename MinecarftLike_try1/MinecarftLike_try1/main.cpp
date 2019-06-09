@@ -12,12 +12,11 @@ RENDER Render;
 int main()
 {
 	Device.init();
-	char filename[] = "1.bmp";
-	if (!Device.LoadBmp(filename))
-		return -1;
-	MeshAndIndex* cube = Device.LoadMeshAndIndexFromFile("grass.txt");
+
+	Object* cube = Device.LoadObject("grass.txt");
 	if (!cube)
 		return -1;
+
 	
 	time_t start, stop;
 	start = time(NULL);
@@ -27,8 +26,9 @@ int main()
 		Device.clean();
 
 		Render.SetWorldMatTranslate(0, 1, 0);
-		Render.SetWorldMatRotation(2, 90);
+		Render.SetWorldMatRotation(2, angle);
 		Render.DrawMesh(cube);
+		
 
 		Device.update();
 		//char strBuffer[20];
