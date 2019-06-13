@@ -1,5 +1,15 @@
 #include"Minecarft.h"
 
+// 旋转摄像机 (有问题需要解决)
+void RENDER::MoveCamera(int direction, float step)
+{
+	if (direction == 0)
+	{
+		CameraAngleLeftRight += step;
+		CameraDirection.z = -1 * cos(CameraAngleLeftRight);
+		CameraDirection.x = sin(CameraAngleLeftRight);
+	}
+}
 
 //位移矩阵
 void RENDER::SetWorldMatTranslate(int x, int y, int z)
@@ -103,19 +113,16 @@ void RENDER::initProjectMat(float fov, float aspect, float zn, float zf)
 
 void RENDER::SetCameraPos(float posx, float posy, float posz)
 {
-
+	CamerPosX = posx;
+	CamerPosY = posy;
+	CamerPosZ = posz;
 }
 
 
 void RENDER::CalFinalMat()
 {
-	vector up;
-	vector direction;
-	vector pos;
-	up.x = 0; up.y = 1; up.z = 0; up.w = 1;
-	direction.x = 1; direction.y = 0; direction.z = -1; direction.w = 1;
-	pos.x = CamerPosX; pos.y = CamerPosY; pos.z = CamerPosZ; pos.w = 1;
-	initCamerMat(up, direction, pos);
+	CameraPos.x = CamerPosX; CameraPos.y = CamerPosY; CameraPos.z = CamerPosZ; CameraPos.w = 1;
+	initCamerMat(CameraUp, CameraDirection, CameraPos);
 	float aspect = (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT;
 	initProjectMat(3.1415926 / 2, aspect, 1, 500);
 
@@ -137,6 +144,8 @@ void RENDER::Transform(const vector& rawVec, const matrix& mat, vector& finalVec
 	finalVec.y = rawVec.x * mat.m[0][1] + rawVec.y * mat.m[1][1] + rawVec.z * mat.m[2][1] + rawVec.w * mat.m[3][1];
 	finalVec.z = rawVec.x * mat.m[0][2] + rawVec.y * mat.m[1][2] + rawVec.z * mat.m[2][2] + rawVec.w * mat.m[3][2];
 	finalVec.w = rawVec.x * mat.m[0][3] + rawVec.y * mat.m[1][3] + rawVec.z * mat.m[2][3] + rawVec.w * mat.m[3][3];
+
+
 }
 
 
@@ -158,25 +167,15 @@ void RENDER::CalTransform()
 	for (int i = 0; i < pointSum; i++)
 	{
 		vector finalVV;
-		vector tempV;
-		Transform(Point[i], tm2, tempV);
+
 		Transform(Point[i], finalMat, finalV[i]);
 		transform_homogenize(finalVV, finalV[i]);
-
-		//FinalMesh[i].hide = CVVCheck(finalV[i]);
+		//对顶点进行剪裁
+		FinalMesh[i].hide = CVVCheck(finalV[i]);
 		FinalMesh[i].Vector = finalVV;
-		FinalMesh[i].hide = true;
-		
-		if (FinalMesh[i].Vector.x > 0 && FinalMesh[i].Vector.x < SCREEN_WIDTH && FinalMesh[i].Vector.y>0 && FinalMesh[i].Vector.y < SCREEN_HEIGHT && FinalMesh[i].Vector.z < depth[(int)FinalMesh[i].Vector.y * SCREEN_WIDTH + (int)FinalMesh[i].Vector.x])
-		{
-			FinalMesh[i].hide = false;
-		}
-
 	}
+
 }
-
-
-
 
 
 
@@ -190,7 +189,6 @@ bool RENDER::CVVCheck(const vector& vec)
 	if (vec.z<0.0f || vec.z>w)
 		return true;
 	return false;
-
 }
 
 void RENDER::DrawPoint(const point& p)
@@ -208,6 +206,8 @@ void RENDER::DrawPoint(const point& p)
 
 void RENDER::DrawLine(const point& a, const point& b)
 {
+	if (a.Vector.x<0 || a.Vector.x>SCREEN_WIDTH || a.Vector.y<0 || a.Vector.y>SCREEN_HEIGHT || b.Vector.x<0 || b.Vector.x>SCREEN_WIDTH || b.Vector.y > 0 || b.Vector.y < SCREEN_HEIGHT)
+		return;
 	int x1 = a.Vector.x;
 	int x2 = b.Vector.x;
 	float z1 = a.Vector.z;
@@ -271,7 +271,6 @@ void RENDER::DrawLine(const point& a, const point& b)
 			}
 		}
 	}
-
 }
 
 
@@ -279,7 +278,7 @@ void RENDER::DrawLine(const point& a, const point& b)
 void RENDER::DrawScanLine(const point& leftp, const point& rightp)
 {
 	point p;
-	for (int i = leftp.Vector.x; i < rightp.Vector.x; i++)
+	for (int i =max(leftp.Vector.x,0); i < min(rightp.Vector.x,SCREEN_WIDTH); i++)
 	{
 
 		p.Vector = vector(i, leftp.Vector.y, leftp.Vector.z);
@@ -292,6 +291,7 @@ void RENDER::DrawScanLine(const point& leftp, const point& rightp)
 		//if(i==leftp.Vector.x+20)
 			//cout << "u " << p.u << " v " << p.v << endl;
 		p.Color = Device.GetTexture(p.u, p.v);
+		
 		DrawPoint(p);
 	}
 }
@@ -304,8 +304,19 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 	//cout << "P1 u " << P1.u << " v " << P1.v << " P2 u " << P2.u << " v " << P2.v << " P3 u " << P3.u << " v " << P3.v << endl;
 
 	point temp;
-	if (P1.hide == 1 || P2.hide == 1 || P3.hide == 1)
+	if (P1.hide == 1 && P2.hide == 1 && P3.hide == 1)
+	{
 		return;
+	}
+	
+	/*
+	if (P1.Vector.x<-0 || P1.Vector.x>SCREEN_WIDTH  || P1.Vector.y<-0 || P1.Vector.y>SCREEN_HEIGHT  || 
+		P2.Vector.x<-0 || P2.Vector.x>SCREEN_WIDTH  || P2.Vector.y<-0 || P2.Vector.y>SCREEN_HEIGHT  ||
+		P3.Vector.x<-0 || P3.Vector.x>SCREEN_WIDTH  || P3.Vector.y<-0 || P3.Vector.y>SCREEN_HEIGHT)
+	{
+		return;
+	}
+	*/
 
 	if (P2.Vector.y < P1.Vector.y)
 	{
@@ -327,11 +338,13 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 	}
 	// y: P1<P2<P3
 
+	int left, right;
+	point pleft, pright;
 	if (P1.Vector.y == P2.Vector.y)
 	{
-		for (int y = P1.Vector.y; y < P3.Vector.y; y++)
+		for (int y = P1.Vector.y; y < min(P3.Vector.y,SCREEN_WIDTH); y++)
 		{
-			int left, right;
+
 			left = interp(y, P1.Vector.y, P3.Vector.y, P1.Vector.x, P3.Vector.x);
 			right = interp(y, P2.Vector.y, P3.Vector.y, P2.Vector.x, P3.Vector.x);
 
@@ -360,7 +373,7 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 				vleft = vright;
 				vright = vtemp;
 			}
-			point pleft, pright;
+
 			pleft.Vector = vector(left, y, 1 / zleft_t);
 			pleft.Color = Color;
 			pright.Vector = vector(right, y, 1 / zright_t);
@@ -370,16 +383,16 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 			pleft.v = vleft;
 			pright.u = uright;
 			pright.v = vright;
-
-			DrawScanLine(pleft, pright);
+			if(pleft.Vector.y>0&& pleft.Vector.y<SCREEN_HEIGHT)
+				DrawScanLine(pleft, pright);
 
 		}
 	}
 	else if (P2.Vector.y == P3.Vector.y)
 	{
-		for (int y = P1.Vector.y; y < P2.Vector.y; y++)
+		for (int y = P1.Vector.y; y < min(P2.Vector.y,SCREEN_WIDTH); y++)
 		{
-			int left, right;
+
 			left = interp(y, P1.Vector.y, P2.Vector.y, P1.Vector.x, P2.Vector.x);
 			right = interp(y, P1.Vector.y, P3.Vector.y, P1.Vector.x, P3.Vector.x);
 			float zleft_t = interp(y, P1.Vector.y, P2.Vector.y, 1 / P1.Vector.w, 1 / P2.Vector.w);
@@ -404,7 +417,7 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 				vleft = vright;
 				vright = vtemp;
 			}
-			point pleft, pright;
+
 			pleft.Vector = vector(left, y, 1 / zleft_t);
 			pleft.Color = Color;
 			pright.Vector = vector(right, y, 1 / zright_t);
@@ -414,15 +427,15 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 			pright.u = uright;
 			pright.v = vright;
 
-
-			DrawScanLine(pleft, pright);
+			if (pleft.Vector.y > 0 && pleft.Vector.y < SCREEN_HEIGHT)
+				DrawScanLine(pleft, pright);
 		}
 	}
 	else
 	{
-		for (int y = P1.Vector.y + 1; y < P2.Vector.y; y++)
+		for (int y = P1.Vector.y + 1; y < min(P2.Vector.y,SCREEN_WIDTH); y++)
 		{
-			int left, right;
+
 			left = interp(y, P1.Vector.y, P2.Vector.y, P1.Vector.x, P2.Vector.x);
 			right = interp(y, P1.Vector.y, P3.Vector.y, P1.Vector.x, P3.Vector.x);
 			float zleft_t = interp(y, P1.Vector.y, P2.Vector.y, 1 / P1.Vector.w, 1 / P2.Vector.w);
@@ -448,7 +461,7 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 				vleft = vright;
 				vright = vtemp;
 			}
-			point pleft, pright;
+
 			pleft.Vector = vector(left, y, 1 / zleft_t);
 			pleft.Color = Color;
 			pright.Vector = vector(right, y, 1 / zright_t);
@@ -459,12 +472,12 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 			pright.u = uright;
 			pright.v = vright;
 
-
-			DrawScanLine(pleft, pright);
+			if (pleft.Vector.y > 0 && pleft.Vector.y < SCREEN_HEIGHT)
+				DrawScanLine(pleft, pright);
 		}
-		for (int y = P2.Vector.y + 1; y < P3.Vector.y; y++)
+		for (int y = P2.Vector.y + 1; y < min(P3.Vector.y,SCREEN_WIDTH); y++)
 		{
-			int left, right;
+
 			left = interp(y, P2.Vector.y, P3.Vector.y, P2.Vector.x, P3.Vector.x);
 			right = interp(y, P1.Vector.y, P3.Vector.y, P1.Vector.x, P3.Vector.x);
 			float zleft_t = interp(y, P2.Vector.y, P3.Vector.y, 1 / P2.Vector.w, 1 / P3.Vector.w);
@@ -489,7 +502,7 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 				vleft = vright;
 				vright = vtemp;
 			}
-			point pleft, pright;
+
 			pleft.Vector = vector(left, y, 1 / zleft_t);
 			pleft.Color = Color;
 			pright.Vector = vector(right, y, 1 / zright_t);
@@ -500,7 +513,8 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 			pright.u = uright;
 			pright.v = vright;
 
-			DrawScanLine(pleft, pright);
+			if (pleft.Vector.y > 0 && pleft.Vector.y < SCREEN_HEIGHT)
+				DrawScanLine(pleft, pright);
 		}
 	}
 }
@@ -508,6 +522,7 @@ void RENDER::DrawTriangle(const point& p1, const point& p2, const point& p3, col
 
 void RENDER::DrawMesh(const Object *object)
 {
+	int lastPointSum = pointSum;
 	pointSum = object->pointSum;
 	Point = object->Point;
 	indexSum = object->indexSum;
@@ -519,22 +534,51 @@ void RENDER::DrawMesh(const Object *object)
 	RGBQUAD* pColorTable;//颜色表指针
 	int biBitCount;//图像类型，每像素位数
 
+
+
 	Device.biBitCount = object->texture->biBitCount;
 	Device.pColorTable = object->texture->pColorTable;
 	Device.bmpWidth = object->texture->bmpWidth;
 	Device.bmpHeight = object->texture->bmpHeight;
 	Device.pBmpBuf = object->texture->pBmpBuf;
+
+	if (lastPointSum != pointSum)
+	{
+		delete[] c_mesh;
+		delete[] finalV;
+		delete[] FinalMesh;
+		c_mesh = new color[pointSum];
+		finalV = new vector[pointSum];
+		FinalMesh = new point[pointSum];
+		if (!FinalMesh)
+			return;
+		if (!c_mesh)
+			return;
+		if (!finalV)
+			return;
+	}
 	
 
-	c_mesh = new color[pointSum];
-	finalV = new vector[pointSum];
-	FinalMesh = new point[pointSum];
-	
 	CalFinalMat();
 	CalTransform();
 
 	for (int i = 0; i < indexSum; i++)
 	{
+
+		FinalMesh[i].hide = true;
+
+		if (FinalMesh[i].Vector.x > 0 && FinalMesh[i].Vector.x < SCREEN_WIDTH && FinalMesh[i].Vector.y>0 && FinalMesh[i].Vector.y < SCREEN_HEIGHT && FinalMesh[i].Vector.z < depth[(int)FinalMesh[i].Vector.y * SCREEN_WIDTH + (int)FinalMesh[i].Vector.x])
+		{
+			FinalMesh[i].hide = false;
+
+		}
+		else
+		{
+			//char strMsg[100];
+			//sprintf(strMsg, "FinalMesh[%d].hide=true", i);
+			//Debuger.print(strMsg, mRED);
+		}
+
 		int a = Index[i].a;
 		int b = Index[i].b;
 		int c = Index[i].c;
@@ -546,9 +590,50 @@ void RENDER::DrawMesh(const Object *object)
 		FinalMesh[c].u = Index[i].uc;
 		FinalMesh[c].v = Index[i].vc;
 
-		DrawTriangle(FinalMesh[a], FinalMesh[b], FinalMesh[c]);
 		DrawLine(FinalMesh[a], FinalMesh[b]);
 		DrawLine(FinalMesh[c], FinalMesh[b]);
 		DrawLine(FinalMesh[a], FinalMesh[c]);
+
+		DrawTriangle(FinalMesh[a], FinalMesh[b], FinalMesh[c]);
+
 	}
+}
+
+void RENDER::AddDrawObject( Object& object, float px, float py, float pz, int rotationAxis, float angle)
+{
+	DrawObject* NewDrawObject = new DrawObject;
+	NewDrawObject->object = object;
+	NewDrawObject->pos.x = px;
+	NewDrawObject->pos.y = py;
+	NewDrawObject->pos.z = pz;
+	NewDrawObject->rotationAxis = rotationAxis;
+	NewDrawObject->rotationAngle = angle;
+
+	if (DrawObjectList != NULL)
+	{
+		NewDrawObject->beforeDrawObject = DrawObjectList;
+	}
+
+	DrawObjectList = NewDrawObject;
+	DrawObjectSum++;
+
+}
+
+void RENDER::Draw()
+{
+	int DrawNowIndex = 0;
+	DrawObject* NowDrawObject = DrawObjectList;
+	while (DrawNowIndex < DrawObjectSum)
+	{
+		Render.SetWorldMatTranslate(NowDrawObject->pos.x, NowDrawObject->pos.y, NowDrawObject->pos.z);
+		Render.SetWorldMatRotation(NowDrawObject->rotationAxis, NowDrawObject->rotationAngle);
+		Render.DrawMesh(&NowDrawObject->object);
+
+
+
+		NowDrawObject = NowDrawObject->beforeDrawObject;
+		//delete TempDrawObject;
+		DrawNowIndex++;
+	}
+
 }

@@ -30,6 +30,9 @@
     <ClCompile Include="render.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="commandline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Minecarft.h">

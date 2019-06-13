@@ -1,17 +1,94 @@
-﻿  device.cpp
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(62,16): warning C4305:  “+=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(64,16): warning C4305:  “-=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(70,26): warning C4305:  “-=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(72,26): warning C4305:  “+=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(74,26): warning C4305:  “+=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(76,26): warning C4305:  “-=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(78,26): warning C4305:  “-=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(80,26): warning C4305:  “+=”: 从“double”到“float”截断
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(65,22): warning C4390:  “;”: 找到空的受控语句；这是否是有意的?
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(67,24): warning C4390:  “;”: 找到空的受控语句；这是否是有意的?
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(183,57): warning C4244:  “=”: 从“float”转换到“BYTE”，可能丢失数据
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(184,57): warning C4244:  “=”: 从“float”转换到“BYTE”，可能丢失数据
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(185,57): warning C4244:  “=”: 从“float”转换到“BYTE”，可能丢失数据
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(223,9): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
-D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\device.cpp(224,9): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+﻿  render.cpp
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(25,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(26,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(27,22): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(127,46): warning C4305:  “参数”: 从“double”到“float”截断
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(199,40): warning C4244:  “参数”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(199,28): warning C4244:  “参数”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(211,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(212,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(217,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(218,9): warning C4244:  “初始化”: 从“const float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(241,25): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(241,22): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,35): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,31): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(244,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(260,25): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(260,22): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,35): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,31): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(263,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(281,13): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(284,21): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(285,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(288,16): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(345,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(348,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(348,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(349,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(349,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(351,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(352,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(354,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(355,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(356,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(357,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(377,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(377,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(379,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(379,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(393,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(396,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(396,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(397,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(397,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(398,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(399,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(401,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(402,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(403,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(404,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(421,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(421,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(423,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(423,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(436,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(439,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(439,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(440,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(440,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(441,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(442,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(445,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(446,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(447,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(448,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(465,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(465,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(467,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(467,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(478,14): warning C4244:  “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(481,18): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(481,17): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(482,19): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(482,18): warning C4244:  “=”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(483,27): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(484,28): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(486,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(487,25): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(488,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(489,26): warning C4244:  “参数”: 从“int”转换到“const float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(506,32): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(506,26): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(508,34): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(508,27): warning C4244:  “参数”: 从“int”转换到“float”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(531,17): warning C4101:  “pBmpBuf”: 未引用的局部变量
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(535,6): warning C4101:  “biBitCount”: 未引用的局部变量
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(534,11): warning C4101:  “pColorTable”: 未引用的局部变量
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(532,6): warning C4101:  “bmpWidth”: 未引用的局部变量
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(533,6): warning C4101:  “bmpHeight”: 未引用的局部变量
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(628,93): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(628,71): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\codehub\MineCarftLike\MinecarftLike_try1\MinecarftLike_try1\render.cpp(628,49): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
   MinecarftLike_try1.vcxproj -> D:\codehub\MineCarftLike\MinecarftLike_try1\Debug\MinecarftLike_try1.exe

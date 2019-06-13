@@ -50,45 +50,87 @@ Object* DEVICE::LoadObject(const char* filepath)
 
 void KeyControl(WPARAM wParam)
 {
+
 	char str[30];
 	sprintf(str,"KeyControl: press %c[%d] ", wParam,wParam);
 	Debuger.print(str,mBLUE);
 
-	if (wParam == VK_ESCAPE)
-	{
-		exit(0);
-	}
 	if (wParam == VK_LEFT)
-		angle += 0.05;
+	{
+		Render.MoveCamera(0, 0.1);
+	}
 	if (wParam == VK_RIGHT)
-		angle -= 0.05;
-	if (wParam == VK_UP);
+	{
+		Render.MoveCamera(0, -0.1);
+	}
+	if (wParam == VK_UP)
+	{
+		Render.CameraDirection.y += 0.1;
+	}
+	if (wParam == VK_DOWN)
+	{
+		Render.CameraDirection.y -= 0.1;
+	}
+	if (wParam == VK_RETURN)
+	{
+		Commandline.Input();
+
+	}
 
 	if (wParam == VK_DOWN);
 
 	if (wParam == 'W')
+	{
+
+		Render.CameraDirection.z -= 0.1;
 		Render.CamerPosZ -= 0.1;
+	}
 	if (wParam == 'S')
+	{
+
+		Render.CameraDirection.z += 0.1;
 		Render.CamerPosZ += 0.1;
+	}
 	if (wParam == 'A')
+	{
+
+		Render.CameraDirection.x += 0.1;
 		Render.CamerPosX += 0.1;
+	}
 	if (wParam == 'D')
+	{
+	
+		Render.CameraDirection.x -= 0.1;
 		Render.CamerPosX -= 0.1;
+	}
 	if (wParam == 'Q')
+	{
+
+		Render.CameraDirection.y -= 0.1;
 		Render.CamerPosY -= 0.1;
+	}
 	if (wParam == 'E')
+	{
+		Render.CameraDirection.y += 0.1;
 		Render.CamerPosY += 0.1;
+	}
 	if (wParam == 'X')
 	{
-		for (int i = 0; i < Render.pointSum; i++)
-		{
-			char strMsg[100];
-			sprintf(strMsg, "point%d x:%.3f y:%.3f z:%.3f w:%.3f u:%.2f v:%.2f",i, Render.FinalMesh[i].Vector.x, Render.FinalMesh[i].Vector.y, Render.FinalMesh[i].Vector.z, Render.FinalMesh[i].Vector.w,Render.FinalMesh[i].u,Render.FinalMesh[i].v);
-			Debuger.print(strMsg, mBLUE);
-		}
 		Debuger.print("Break Point", mRED);
-	}
 
+	}
+	/*
+	char strMsg[1000];
+	for (int i = 0; i < Render.pointSum; i++)
+	{
+	
+		sprintf(strMsg, "finalV[%d] x:%.3f y:%.3f z:%.3f w:%.3f", i, Render.finalV[i].x, Render.finalV[i].y, Render.finalV[i].z, Render.finalV[i].w);
+		Debuger.print(strMsg, mBLUE);
+		sprintf(strMsg, "FinalMesh[%d] x:%.3f y:%.3f z:%.3f w:%.3f u:%.2f v:%.2f", i, Render.FinalMesh[i].Vector.x, Render.FinalMesh[i].Vector.y, Render.FinalMesh[i].Vector.z, Render.FinalMesh[i].Vector.w, Render.FinalMesh[i].u, Render.FinalMesh[i].v);
+		Debuger.print(strMsg, mBLUE);
+
+	}
+	*/
 }
 
 
@@ -119,6 +161,11 @@ LRESULT CALLBACK WindowProc(
 
 bool DEVICE::init()
 {
+	//get hwnd of cmd window
+	char strTitle[255];
+	GetConsoleTitle(strTitle, 255);
+	hwndCmd = FindWindow("ConsoleWindowClass", strTitle);
+
 
 	//init windows
 	sprintf_s(title, "HI");
@@ -137,7 +184,7 @@ bool DEVICE::init()
 
 	RegisterClass(&Draw);
 
-	hwnd = CreateWindow(
+	hwndShowWindow = CreateWindow(
 		title,
 		title,
 		WS_OVERLAPPEDWINDOW,
@@ -151,8 +198,8 @@ bool DEVICE::init()
 		NULL
 	);
 
-	ShowWindow(hwnd, SW_SHOW);
-	UpdateWindow(hwnd);
+	ShowWindow(hwndShowWindow, SW_SHOW);
+	UpdateWindow(hwndShowWindow);
 
 
 	//init bitbuffer
@@ -165,7 +212,7 @@ bool DEVICE::init()
 	binfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 	binfo.bmiHeader.biWidth = SCREEN_WIDTH;
 
-	screen_hdc = GetDC(hwnd);
+	screen_hdc = GetDC(hwndShowWindow);
 	hCompatibleDC = CreateCompatibleDC(screen_hdc);
 	hCompatibleBitmap = CreateCompatibleBitmap(screen_hdc, SCREEN_WIDTH, SCREEN_HEIGHT);
 	hOldBitmap = (HBITMAP)SelectObject(hCompatibleDC, hCompatibleBitmap);
@@ -180,10 +227,20 @@ void DEVICE::clean()
 	{
 		for (int x = 0; x < SCREEN_WIDTH; x++)
 		{
+			/*
 			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 1] = 255 - 255 * (float)y / (float)SCREEN_HEIGHT;
 			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 2] = 255 - 255 * (float)y / (float)SCREEN_HEIGHT;
 			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 3] = 255 - 255 * (float)y / (float)SCREEN_HEIGHT;
-			depth[y * SCREEN_WIDTH + x] = 20;
+			*/
+			/*
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 1] = 255;
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 2] = 255;
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 3] = 255;
+			*/
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 1] = 119;
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 2] = 150;
+			buffer[y * SCREEN_WIDTH * 3 + (x + 1) * 3 - 3] = 154;
+			depth[y * SCREEN_WIDTH + x] = FLT_MAX;
 		}
 	}
 }
@@ -206,7 +263,7 @@ void DEVICE::update()
 
 void DEVICE::SetTitle(const char* title)
 {
-	SetWindowText(hwnd, title);
+	SetWindowText(hwndShowWindow, title);
 }
 
 void DEVICE::DrawPoint(int x, int y,color Color)

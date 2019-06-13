@@ -14,12 +14,12 @@
 using namespace std;
 
 
-
 #include<Windows.h>
 #include<time.h>
 #include<tchar.h>
 #include<iostream>
 #include<fstream>
+#include<stdint.h>
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -27,6 +27,9 @@ const int bits = 24;
 const int MAX_DEPTH = -9999;
 
 extern float angle;
+
+extern bool gameoverflag;
+
 
 
 class color
@@ -75,6 +78,8 @@ struct Texture
 	int biBitCount;//图像类型，每像素位数
 };
 
+
+enum ObjectType{tTEXTURE,tCOLOR};
 struct Object
 {
 	int pointSum;
@@ -83,14 +88,26 @@ struct Object
 	int indexSum;
 	TriangleIndex* Index;
 
+	ObjectType objecttype;
 	Texture *texture;
+	color Color;
 };
 
-
+struct DrawObject
+{
+	Object object;
+	vector pos;
+	int rotationAxis;
+	float rotationAngle;
+	DrawObject* beforeDrawObject;
+};
 
 
 extern BYTE buffer[SCREEN_WIDTH * SCREEN_HEIGHT * bits / 8];
 extern float depth[SCREEN_WIDTH * SCREEN_HEIGHT];
+
+
+extern Object* cube;
 
 class DEVICE
 {
@@ -105,12 +122,15 @@ public:
 	Object* LoadObject(const char*);
 	
 	HDC screen_hdc;
+
+	HWND hwndShowWindow;
+	HWND hwndCmd;
 private:
 	friend class RENDER;
 	//windows data
 	HINSTANCE hInstance;
 	WNDCLASS Draw;
-	HWND hwnd;
+
 	MSG msg;
 	char title[100];
 
@@ -144,7 +164,17 @@ public:
 class RENDER
 {
 public:
-	
+	RENDER()
+	{
+		CameraUp.x = 0; CameraUp.y = 1; CameraUp.z = 0; CameraUp.w = 1;
+		CameraDirection.x = 0; CameraDirection.y = 0; CameraDirection.z = -1; CameraDirection.w = 1;
+		CameraAngleUpDown = 0;
+		CameraAngleLeftRight = 0;
+		DrawObjectSum = 0;
+
+	}
+
+	void MoveCamera(int direction, float step);
 	void SetWorldMatTranslate(int x, int y, int z);
 	void SetWorldMatRotation(int axis, float angle);
 	void SetCameraPos(float posx, float posy, float posz);
@@ -160,6 +190,8 @@ public:
 	void DrawScanLine(const point& leftp, const point& rightp);
 	void DrawTriangle(const point& p1, const point& p2, const point& p3, color Color = color(255, 255, 255));
 	void DrawMesh(const Object *);
+	void AddDrawObject(Object& object, float px=0, float py=0, float pz=0, int rotationAxis=0, float angle=0);
+	void Draw();
 	
 	color *c_mesh;
 	point *FinalMesh;
@@ -175,14 +207,34 @@ public:
 	float CamerPosY = 0;
 	float CamerPosZ = 6;
 
+	vector CameraUp;
+	vector CameraDirection;
+	vector CameraPos;
+	float CameraAngleUpDown;
+	float CameraAngleLeftRight;
+
+	DrawObject* DrawObjectList;
+	int DrawObjectSum;
 
 private:
+	
+	
 	matrix worldMat1;
 	matrix worldMat2;
 	matrix camerMat;
 	matrix projectMat;
 	matrix finalMat;
 	matrix tm1, tm2;	//矩阵相乘时的临时矩阵
+};
+
+class COMMANDLINE
+{
+public:
+	void Input();
+	void parser();
+private:
+	const int MAX_LINESUM = 100;
+	char cmd[100];
 };
 
 void KeyControl(WPARAM wParam);
@@ -196,6 +248,7 @@ float vecDotMul(const vector& a, const vector& b);
 void matMul(const matrix& a, const matrix& b, matrix& c);
 void showMat(const matrix& mat);
 
+extern COMMANDLINE Commandline;
 extern DEBUGER Debuger;
 extern DEVICE Device;
 extern RENDER Render;
